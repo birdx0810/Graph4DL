@@ -1,18 +1,94 @@
 # Translation Models for Knowledge Representation Learning
 > Code: [THUNLP TensorFlow](https://github.com/thunlp/TensorFlow-TransX)
 
+Knowledge graphs (e.g. FreeBase, WikiData, GeneOntology, MeSH etc.) are known for being helpful for AI and NLP tasks, yet there is still a big issue in the completion and coverage of these KGs. Hence, many research have placed efforts in unsupervised extraction of implicit relation facts without requiring extra knowledge, a.k.a **Link Prediction** and **Knowledge Graph Completion**.
+
 ### TransE: Translating Embeddings for Modeling Multi-relational Data
-> 2013  
+> Antoine Bordes, Nicolas Usunier, Alberto Garcia-Duran, Jason Weston, Oksana Yakhnenko (NIPS 2013)  
 > Paper: [Link](https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data)
+
+**Multi-relational data**  
+- ..refers to directed graphs whose nodes correspond to *entities* and *edges of the form (head, relation, tail).  
+- Modeling multi-relational data refers to the extraction of local and global connectivity patterns between entities and generalize the observed relationship between a specific entity and all others.
+- The *notion of locality* of relational data may involve relationships and entities of different types at the same time.
+- Recent approaches have focused on increasing the expressivity and universality of the model with the expense of higher complexity, and thus overfitting.
+
+**Relations as translations**
+- Relationships are represented as *translations in the embedding space*.
+- Hierarchical relationships are extremely common in KBs and translations are the natural transformations for representing them.
+- Another motivation comes from word2vec, where 1-to-1 relationships between entities are extracted and represented into word embeddings, which could also probably be done in KBs.
+- Hence, we attempt to use a low-dimensional vector to represent key relationships between entities in KBs.
+
+Contribution:
+- Easy to train
+- Reduced parameters (Low dimensional)
+- Scalable
+
+#### Methodology
+Proposed an **energy-based model** for learning low-dimensional embeddings of entities.
+- *Energy-based models* capture dependencies by associating a *scalar energy* (a measure of compatibility) to each configuration of the variables.
+- *Learning* consists in finding an energy function that associates low energies to correct values of the remaining variables, and higher energies to incorrect values.
+- The loss function to measure the quality of the available energy functions is minimized during learning.
+  - Here, a margin-based ranking criterion is used.
+
+$$
+\mathcal{L} = \sum_{(h,r,t)\in S}\sum_{(h',r',t')\in S'_{(h,r,t)}}\Big[ max(0, \gamma + d(h+r, t) - d(h'+r, t')) \Big]
+$$
+
+Where, 
+- $d(h+r, t)$ is the energy of a triplet, where $d()$ is the dissimilarity measure ($L_1$ or $L_2$-norm).
+  - if $d(h+r, t) < d(h'+r, t')$, then the loss is $0$
+  - if $d(h+r, t) > d(h'+r, t')$, then the loss is $> 0$
+- $d(h'+r, t')$ is the a corrupted triplet, where the head or tail is a false entity.
+- $\gamma > 0$ is the margin threshold
+
+If we consider $d$ as the squared euclidean distance for our dissimilarity function:
+$$
+d(h+r, t) = ||h||^2_2 + ||r||^2_2 + ||t||^2_2 - ||2(h^\intercal t+r^\intercal (t-h))
+$$
+Where, 
+- $||h||^2_2=||t||^2_2=1$
+
+The model has lesser parameters compared to [Neural Tensor Models](https://papers.nips.cc/paper/5028-reasoning-with-neural-tensor-networks-for-knowledge-base-completion.pdf).
+
+![](https://i.imgur.com/eBbKAAc.png)
+
+**Hyperparameters**:
+- $k$ is the embedding size
+- Optimizer: SGD
+
+| | Wordnet | FB15k | FB1M |
+| - | - | - | - |
+| $k$ | 20 | 50 | 50 |
+| lr | 0.01 | 0.01 | 0.01 |
+| $\gamma$ | 2 | 1 | 1 |
+| $d()$ | $L_1$ | $L_1$ | $L_2$ |
+| Epochs | 1000(max) | 1000(max) | 1000(max) | 
+
+![](https://i.imgur.com/3y95eBR.png)
+**Training Procedure**
+1. Normalize relationship and entity vectors
+2. Sample positive triplets $p$ and sample negative triplets $n$ for each triplet
+3. Calculate loss and update gradient
+
+#### Evaluation
+Evaluated on link prediction and predicting new relationships.
+
+![](https://i.imgur.com/x3CoB2J.png)
 
 **TL;DR:**
 - Sum of head vector $h$ and relation vector $r$ should be as close as possible to tail vector $t$
+  - $h + r \approx t$, where $t$ is the nearest neighbor of $h + r$
 - Loss function: Max-margin with negative sampling
   - $L(h,r,t) = max(0, d_{pos} - d_{neg} + margin)$
   - $d = || h + r - t ||$
 - Only practical for one-to-one relationships
 
 **Objective Function**: $|| h + r - t ||^2_{l_{1/2}} \quad r \in R^k$
+
+Reference: 
+- [Pierre-Yves Vandenbussche's Website](http://pyvandenbussche.info/2017/translating-embeddings-transe/)
+- [Raúl Gómez on Ranking Loss](https://gombru.github.io/2019/04/03/ranking_loss/)
 
 ### TransH: Knowledge Graph Embedding by Translating on Hyperplanes
 > 2014  
