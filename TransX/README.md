@@ -88,6 +88,7 @@ Evaluated on link prediction and predicting new relationships.
 
 Reference: 
 - [Pierre-Yves Vandenbussche's Website](http://pyvandenbussche.info/2017/translating-embeddings-transe/)
+- [How to use TransE effectively](http://www.ccri.com/2018/06/27/use-transe-effectively/)
 - [Raúl Gómez on Ranking Loss](https://gombru.github.io/2019/04/03/ranking_loss/)
 
 ### TransH: Knowledge Graph Embedding by Translating on Hyperplanes
