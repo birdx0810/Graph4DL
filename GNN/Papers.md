@@ -1,43 +1,11 @@
-# GraphEmbeddings & GraphNetworks
-###### tags: `GroupMeeting`
+# Graph Neural Network Papers
 
-## Graph Theory 101
-![](https://i.imgur.com/t4sRsd7.png =360x)
-- A **graph** is often denoted by $G=(V,E)$
-- $V=\{v_1,...,v_n\}$ is the set of **vertices**
-    - $d(v)$ is the number of edges connected (**degree**) of vertice $v$, 
-- $E = \{e_1,...,e_m\}$ is the set of **edges**
-    - each edge $e$ has two **endpoints** $e=u,v$ joined by $e$
-    - $u$ is then a **neighbour** of $v$, and $u, v \in V$
-    - edges could be directed or undirected
-
-Adjacent Matrix
-: a.k.a connection matrix, denoted by $A_{ij} \in \mathbb{R}^{n \times n}$, represents if there is a connection between the vertices $i$ and $j$.
-The matrix should be symmetric when $G$ is an undirected graph.
-
-$$
-A_{ij} = 
-\begin{cases}
-1 \ \text{ if } \{v_i, v_j\} \in E \text{ and } i \neq j \\
-0 \ \text{ otherwise}
-\end{cases}
-$$
-
-Degree Matrix
-: is a diagonal matrix, denoted as $D_{ii} = d(v_i) \in \mathbb{R}^{n \times n}$, that shows the degree of each node.
-
-***Other Algebraic Representations of Graphs***
-- Laplacian matrix
-- Symmetric normalized Laplacian
-- Random walk normalized Laplacian
-- Incidence matrix
-
-## Papers
-
-### The Graph Neural Network Model
+## The Graph Neural Network Model
 ###### GraphNetworks
->  Franco Scarselli, Marco Gori, Ah Chung Tsoi, Markus Hagenbuchner, Gabriele Monfardini
->  Paper: [Link](https://ieeexplore.ieee.org/document/4700287)
+>  Franco Scarselli, Marco Gori, Ah Chung Tsoi, Markus Hagenbuchner, Gabriele Monfardini  
+>  Paper: [Link](https://ieeexplore.ieee.org/document/4700287)  
+
+### Introduction
 - The GNN is designed specifically to handle graph-structured data, such as social networks, molecular structures, knowledge graphs, etc.
 - A node is naturally defined by its features and related nodes in the graph.
 
@@ -50,7 +18,7 @@ Degree Matrix
 - The Vanilla GNN only deals with undirected homogeneous graph.
 
 
-#### Methodology
+### Methodology
 ![](https://i.imgur.com/zm73JNO.png =480x)
 
 ***Local***
@@ -97,46 +65,58 @@ Where,
 - The states $\mathbf{h}_v^t$ are iteratively updated by $f$ until time step $T$. We could then obtain an approximate fixed point solution $\mathbf{H}(T)\approx\mathbf{H}$ from $F$ by [Banach’s fixed point theorem](https://en.wikipedia.org/wiki/Banach_fixed-point_theorem).
 - The gradient of weights $\mathbf{W}$ are computed by the loss, and updated according to the gradient computed at the last step $T$.
 
-#### Limitations
+### Limitations
 - The model needs T steps of computation to approximate the fixed point.
 - Vanilla GNN uses the same parameters in the iteration.
 - Edge could not be effectively modeled in vanilla GNN.
 
-### Graph Convolutional Networks
+## Graph Convolutional Networks
 ###### GraphNetworks
+> Thomas N. Kipf, Max Welling (9 Sep 2016)  
+> Paper: [Link](https://arxiv.org/abs/1609.02907)  
+
+## GraphSAGE
+###### GraphNetworks
+> William L. Hamilton, Rex Ying, Jure Leskovec (7 Jun 2017)  
+> Stanford: [Link](http://snap.stanford.edu/graphsage/)  
 
 ### Graph Attention Networks
 ###### GraphNetworks
+> Petar Veličković, Guillem Cucurull, Arantxa Casanova, Adriana Romero, Pietro Liò, Yoshua Bengio (30 Oct 2017)  
+> Paper: [Link](https://arxiv.org/abs/1710.10903)  
 
-### Meta-GNN
+## Meta-GNN
 ###### GraphNetworks
-> Fan Zhou, Chengtai Cao, Kunpeng Zhang, Goce Trajcevski, Ting Zhong, Ji Geng
-> Paper: [Link](https://arxiv.org/abs/1905.09718)
+> Fan Zhou, Chengtai Cao, Kunpeng Zhang, Goce Trajcevski, Ting Zhong, Ji Geng  (23 May 2019)  
+> Paper: [Link](https://arxiv.org/abs/1905.09718)  
 
+## Graph Transformer Networks
+###### GraphNetworks
+> Seongjun Yun, Minbyul Jeong, Raehyun Kim, Jaewoo Kang, Hyunwoo J. Kim (6 Nov 2019)  
+> Paper: [Link](https://arxiv.org/abs/1911.06455)  
 
-### DeepWalk
+## DeepWalk
 ###### Graph Embeddings
-> Bryan Perozzi, Rami Al-Rfou, Steven Skiena (27 Jun 2014)
-> Paper: [Link](https://arxiv.org/abs/1403.6652)
+> Bryan Perozzi, Rami Al-Rfou, Steven Skiena (27 Jun 2014)  
+> Paper: [Link](https://arxiv.org/abs/1403.6652)  
 
-The skip-gram of graph networks
+The skip-gram of graph networks.
 
-
-### LINE
+## LINE
 ###### Graph Embeddings
-> Jian Tang, Meng Qu, Mingzhe Wang, Ming Zhang, Jun Yan, Qiaozhu Mei (12 Mar 2015)
-> Paper: [Link](https://arxiv.org/abs/1503.03578)
+> Jian Tang, Meng Qu, Mingzhe Wang, Ming Zhang, Jun Yan, Qiaozhu Mei (12 Mar 2015)  
+> Paper: [Link](https://arxiv.org/abs/1503.03578)  
 
 
-### Node2Vec
+## Node2Vec
 ###### Graph Embeddings
-> Aditya Grover, Jure Leskovec (3 Jul 2016)
-> Stanford: [Link](https://snap.stanford.edu/node2vec/)
+> Aditya Grover, Jure Leskovec (3 Jul 2016)  
+> Stanford: [Link](https://snap.stanford.edu/node2vec/)  
 
-### Graph2Vec
+## Graph2Vec
 ###### ???
-> Annamalai Narayanan, Mahinthan Chandramohan, Rajasekar Venkatesan, Lihui Chen, Yang Liu, Shantanu Jaiswal
-> Paper: [Link](https://arxiv.org/abs/1707.05005)
+> Annamalai Narayanan, Mahinthan Chandramohan, Rajasekar Venkatesan, Lihui Chen, Yang Liu, Shantanu Jaiswal  
+> Paper: [Link](https://arxiv.org/abs/1707.05005)  
 
 
 ## References
