@@ -1,7 +1,7 @@
 # Graph Neural Network Papers
 
 ## The Graph Neural Network Model
-###### GraphNetworks
+###### Graph Networks
 >  Franco Scarselli, Marco Gori, Ah Chung Tsoi, Markus Hagenbuchner, Gabriele Monfardini  
 >  Paper: [Link](https://ieeexplore.ieee.org/document/4700287)  
 
@@ -71,50 +71,50 @@ Where,
 - Edge could not be effectively modeled in vanilla GNN.
 
 ## Graph Convolutional Networks
-###### GraphNetworks
+###### Graph Networks
 > Thomas N. Kipf, Max Welling (9 Sep 2016)  
 > Paper: [Link](https://arxiv.org/abs/1609.02907)  
 
 ## GraphSAGE
-###### GraphNetworks
+###### Graph Networks
 > William L. Hamilton, Rex Ying, Jure Leskovec (7 Jun 2017)  
 > Stanford: [Link](http://snap.stanford.edu/graphsage/)  
 
 ### Graph Attention Networks
-###### GraphNetworks
+###### Graph Networks
 > Petar Veličković, Guillem Cucurull, Arantxa Casanova, Adriana Romero, Pietro Liò, Yoshua Bengio (30 Oct 2017)  
 > Paper: [Link](https://arxiv.org/abs/1710.10903)  
 
 ## Meta-GNN
-###### GraphNetworks
+###### Graph Networks
 > Fan Zhou, Chengtai Cao, Kunpeng Zhang, Goce Trajcevski, Ting Zhong, Ji Geng  (23 May 2019)  
 > Paper: [Link](https://arxiv.org/abs/1905.09718)  
 
 ## Graph Transformer Networks
-###### GraphNetworks
+###### Graph Networks
 > Seongjun Yun, Minbyul Jeong, Raehyun Kim, Jaewoo Kang, Hyunwoo J. Kim (6 Nov 2019)  
 > Paper: [Link](https://arxiv.org/abs/1911.06455)  
 
 ## DeepWalk
-###### Graph Embeddings
+###### Node Embeddings
 > Bryan Perozzi, Rami Al-Rfou, Steven Skiena (27 Jun 2014)  
 > Paper: [Link](https://arxiv.org/abs/1403.6652)  
 
 The skip-gram of graph networks.
 
 ## LINE
-###### Graph Embeddings
+###### Node Embeddings
 > Jian Tang, Meng Qu, Mingzhe Wang, Ming Zhang, Jun Yan, Qiaozhu Mei (12 Mar 2015)  
 > Paper: [Link](https://arxiv.org/abs/1503.03578)  
 
 
 ## Node2Vec
-###### Graph Embeddings
+###### Node Embeddings
 > Aditya Grover, Jure Leskovec (3 Jul 2016)  
 > Stanford: [Link](https://snap.stanford.edu/node2vec/)  
 
 ## Graph2Vec
-###### ???
+###### Graph Embeddings
 > Annamalai Narayanan, Mahinthan Chandramohan, Rajasekar Venkatesan, Lihui Chen, Yang Liu, Shantanu Jaiswal  
 > Paper: [Link](https://arxiv.org/abs/1707.05005)  
 
