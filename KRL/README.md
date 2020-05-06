@@ -1,4 +1,6 @@
-# Knowledge Graph
+# Knowledge Embeddings and Knowledge Representation Learning
+
+## Introduction
 
 Definition: Knowledge Graphs/Bases describes real-world *entities* and their *relations*, organized in a *graph*.
 
@@ -44,13 +46,6 @@ The below problems could be solved via supervised(manual), semi-supervised, unsu
 - Turtle (.ttl)
 - N-Triples (.nt)
 
-## Packages
-- rdflib
-- html5lib
-- sparqlwrapper
-- networkx
-- OpenKE
-
 ## Open KGs/Datasets
 - [Freebase Dumps](https://developers.google.com/freebase) (`.nt`)
 - [Wikidata Dumps](https://www.wikidata.org/wiki/Wikidata:Database_download) (`.json`, `.ttl`, `.nt`, `.xml`)
@@ -68,11 +63,6 @@ Ontology: (Metaphysics, Philosophy) a study of the nature of existence and the s
 
 OWL: is a semantic web language designed to represent rich and complex knowledge about things, groups of things, and relations between things.
 
-GraphQL: 
-
-Knowledge Embeddings
-
-Knowledge Representation Learning
 
 
 

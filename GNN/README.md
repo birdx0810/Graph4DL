@@ -1,5 +1,7 @@
 # GraphEmbeddings & GraphNetworks
-## Graph Theory 101
+
+## Introduction
+
 ![](https://i.imgur.com/t4sRsd7.png =360x)
 - A **graph** is often denoted by $G=(V,E)$
 - $V=\{v_1,...,v_n\}$ is the set of **vertices**
