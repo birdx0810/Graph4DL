@@ -1,7 +1,7 @@
 # Translation Models for Knowledge Representation Learning
 > Code: [THUNLP TensorFlow](https://github.com/thunlp/TensorFlow-TransX)
 
-Knowledge graphs (e.g. FreeBase, WikiData, GeneOntology, MeSH etc.) are known for being helpful for AI and NLP tasks, yet there is still a big issue in the completion and coverage of these KGs. Hence, many research have placed efforts in unsupervised extraction of implicit relation facts without requiring extra knowledge, a.k.a **Link Prediction** and **Knowledge Graph Completion**.
+Knowledge graphs (e.g. FreeBase, WikiData, GeneOntology, MeSH etc.) are known for being helpful for AI and NLP tasks, yet there is still a big issue in the completion and coverage of these KGs. Hence, many research have placed efforts in unsupervised extraction of implicit relation facts without requiring extra knowledge, a.k.a **Link Prediction** or **Knowledge Graph Completion** or **Knowledge Representation(Translation) Models**.
 
 ### TransE: Translating Embeddings for Modeling Multi-relational Data
 > Antoine Bordes, Nicolas Usunier, Alberto Garcia-Duran, Jason Weston, Oksana Yakhnenko (NIPS 2013)  

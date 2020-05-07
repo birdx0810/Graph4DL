@@ -1,5 +1,6 @@
 # Knowledge Integration Papers
 
+Pre-trained language models have been acheiving promising results in recent years, they neglect to incorporate knowledge information for language understanding even though it has been known to be beneficial.
 
 ## Language Model (RNN) Integration
 ### Neural Knowledge Language Model
@@ -27,7 +28,6 @@
 > Code: [GitHub](https://github.com/thunlp/ERNIE)
 
 #### Introduction
-Pre-trained language models have been acheiving promising results in recent years, they neglect to incorporate knowledge information for language understanding.
 
 In order to integrate knowledge graphs into word representations, there are **two** challenges: 
 

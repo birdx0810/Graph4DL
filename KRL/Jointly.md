@@ -1,5 +1,7 @@
 # Text & Knowledge Jointly Models
 
+Jointly models aim to integrate knowledge graph representations (e.g. TransE) into word language models (e.g. word2vec) with the goal of creating a more expressive representations.
+
 ## Connecting Language and Knowledge Bases with Embedding Models for Relation Extraction
 > Jason Weston, Antoine Bordes, Oksana Yakhnenko, Nicolas Usunier (EMNLP 2013)
 > Affiliation: Google & UTC
@@ -10,13 +12,13 @@
 > Affiliation: Microsoft & SYSU(CN)
 > Paper: [Link](https://www.aclweb.org/anthology/D14-1167.pdf)
 
-## Introduction
+### Introduction
 Embeddings attempt to preserve the relations between entities in the knowledge graph or concurrences of words in the text corpus, that is learnt by minimizing global loss function.
 
 This paper proposes to embed knowledge graph embeddings and word representation embeddings into the same continuous vector space using a coherent probabilistic model. 
 
-## Related Work
-### Knowledge Graph Embeddings
+### Related Work
+#### Knowledge Graph Embeddings
 Knowledge Graph expresses relation facts in the form of a $(\text{head, relation, tail})$ triplet and entities are represented as a $k$-dimension vector. ==With the goal of capturing local and global connectivity patterns.== TransE interpretes a **relation** as a translation from the head entity.
 
 $$
@@ -27,7 +29,7 @@ Problems:
 - Knowledge graph completion (missing facts of entities/relations, *out-of-kb*)
 - Only able to reason from facts within current KGs
 
-### Word Embeddings
+#### Word Embeddings
 Word embeddings are learnt from an unlabeled corpus by predicting the context of each word (SkipGram) or predicting the current word given its context (CBOW). ==Where the goal is to capture the semantic and syntactic relations between words.== A **relation** is also represented as the translation between word embeddings
 
 $$
@@ -37,14 +39,14 @@ $$
 Problem: 
 - Does not know the relation between entity pairs
 
-### Relational Facts Extraction
+#### Relational Facts Extraction
 Identifying local text patterns from free text that express a certain relation and making predictions. Knowledge embeddings are complimentary for this task.
 
 Problem:
 - Do not utilize the the evidence from knowledge graphs
 - Couldn't solve the problem of OOKB
 
-## Methodology
+### Methodology
 **Preface**
 - $(h,r,t) \in \Delta$ represents the head entity $h$, relation $r$ and tail entity $t$ of the knowledge graph $\Delta$
     - $h, t \in \mathcal{E}$ are all the entities within $\Delta$
@@ -81,7 +83,7 @@ $$
     - The alignment model is absorbed by the text model and knowledge model 
 - Stochastic Gradient Descent is used for optimization, and it is done simultaneously for all models
 
-### Knowledge Model
+#### Knowledge Model
 
 The goal is to ==maximize the conditional likelihood of existing fact triplets==. Where $\mathcal{z}(h,r,t)$ is considered to be large if the triplet is true.
 $$
@@ -108,7 +110,7 @@ $$
 **Notes**:
 - Compared to TransE which uses margin ranking loss, we define the knowledge model as a probabilistic model. Thus, there is no need to constrict the norm $\gamma$.
 
-### Text Model
+#### Text Model
 Relational concurrence assumption
 : where for two words $w$, $v$ within a context, there is a relation $r_{wv}$ between them. 
 
@@ -138,7 +140,7 @@ $$
 \text{Pr}(w|r_{wv}, v) \triangleq \text{Pr}(w|v) = \text{softmax}(w', v)
 $$
 
-### Alignment Model
+#### Alignment Model
 Goal: Embed Entities (KG) and Words (Pre-trained Word Representations) into same continuous vector space
 
 There are two alignment methods proposed:
@@ -163,7 +165,7 @@ $$
 
 Where $\mathcal{L}_A$ could be $\mathcal{L}_{AA}$ or $\mathcal{L}_{AN}$
 
-## Implementation Details
+### Implementation Details
 - Datasets
     - KG: Freebase (Graph is divided into:
         - main facts (all)
@@ -187,18 +189,18 @@ Where $\mathcal{L}_A$ could be $\mathcal{L}_{AA}$ or $\mathcal{L}_{AN}$
 | $c$ | neg/pos | - | {5, **10**} | {5, **10**} |
 | $s$ | skip-range | - | {**5**,10} | - | - |
 
-## Experiments
+### Experiments
 The experiments were done on three tasks:
 1. Triplet Classification
 2. Improving Relation Extraction
 3. Analogical Reasoning Task
 
-### Triplet Classification
+#### Triplet Classification
 - Binary classification if a fact $(h,r,t)$ is true
 - Experiment method is same as NTN (Socher et al., 2013)
 - vs. TransE (Bordes et al., 2013)
 
-#### Results
+**Results**
 ![](https://i.imgur.com/qLPxiXE.png =430x)
 - pTransE performs better than TransE over non-OOKB triplets
 - Because TransE scores are not "normalized", popular relations tend to have higher scores than rare relations
@@ -208,17 +210,17 @@ The experiments were done on three tasks:
 - Jointly models outperforms the "respectively" (non-jointly) model in all held-out triplet groups
 - Alignment by names performs better than alignment by anchors due to the smaller amount of anchors available
 
-### Improving Relation Extraction
+#### Improving Relation Extraction
 - Used Mintz (et al., 2009) and Sm2r (Weston et al., 2013) as extractors (Jointly is used as a feature)
 - Dataset: NYT+FB (Riedel et al., 2010)
 - vs. TransE (Bordes et al., 2013)
 
-#### Results
+**Results**
 ![](https://i.imgur.com/Sn8DAJq.png)
 - PR curves of both tasks show that the jointly model and knowledge model performs on par over $e-e$.
 - Jointly model outperforms knowledge model in OOKB instances
 
-### Analogical Reasoning Task
+#### Analogical Reasoning Task
 - The task consists of analogies such as “Germany” : “Berlin” :: “France” : ?,which are solved by finding a vector x such that vec(x) is closest to vec(“Berlin”) - vec(“Germany”) + vec(“France”) according to the cosine distance
 - Anologies include:
     - Word analogies
@@ -226,7 +228,7 @@ The experiments were done on three tasks:
     - Constructed analogies (from KB)
 - vs. Skip-gram (Mikolov et al., 2013b)
 
-#### Results
+**Results**
 ![](https://i.imgur.com/qZyWEDb.png)
 - Using entity names for alignment hurts the performance of analogies of words and phrases because
     - a named graph forces the word embeddings to satisfy both popular and rare facts
