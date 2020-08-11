@@ -1,4 +1,4 @@
-# Knowledge & Graphs
+# Graph4DL
 This is a repository for Knowledge Bases and Graph Networks for natural language processing and deep learning.
 
 The following is a list of resources from this repository:
